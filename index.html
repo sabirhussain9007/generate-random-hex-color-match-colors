@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>change color</title>
+    <style type="text/css" media="all">
+
+        .usersColorContainer {
+            width: 400px;
+            height: 400px;
+
+        }
+
+        .slectedColor {
+            width: 300px;
+            height: 150px;
+            background-color: #162054;
+        }
+
+
+        .systemTest {
+            width: 300px;
+            height: 150px;
+            margin-top: 2px;
+
+        }
+
+        .systemColor {
+            width: 300px;
+            height: 150px;
+            background-color: #762054;
+        }
+
+
+    </style>
+
+
+    <script type="text/javascript" charset="utf-8">
+
+
+        function userChoosed() {
+            var randomColor = Math.floor(Math.random()*988899).toFixed();
+            if (randomColor.length < 6) {
+                randomColor += "5";
+
+            }
+            var userColor = "#"+randomColor;
+
+
+            document.getElementById("generatedColor").style.backgroundColor = userColor;
+
+            document.getElementById("genHax").innerText = userColor;
+
+        }
+
+
+
+
+
+        function genColor() {
+
+            var USER_CHOOSED_COLOR = document.getElementById("genHax").textContent;
+
+            var LEFT_ONE_DIGIT = USER_CHOOSED_COLOR.slice(0, 1);
+            var LAST_FIVE_DIGITS = USER_CHOOSED_COLOR.slice(2);
+
+
+            var NEW_NUM = Math.floor(Math.random()*10);
+
+
+            var NEW_GENERATED_COLOR = LEFT_ONE_DIGIT+NEW_NUM+LAST_FIVE_DIGITS;
+
+
+            document.getElementById("systemColor").style.backgroundColor = NEW_GENERATED_COLOR;
+
+            document.getElementById("searched").innerText = NEW_GENERATED_COLOR;
+
+            if (USER_CHOOSED_COLOR === NEW_GENERATED_COLOR) {
+
+                return "Done";
+            }
+
+
+
+            setTimeout(function() {
+
+                console.log(NEW_GENERATED_COLOR);
+
+                return genColor();
+
+            }, 200);
+
+
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class="mainContainer">
+
+        <div class="usersColorContainer">
+            <div class="slectedColor" id="generatedColor">
+
+            </div>
+
+            <button onclick="userChoosed()" id="genUserColor">Choose New Random Color</button>
+            <p>
+                HAX CODE OF YOUR COLOUR IS <span id="genHax">#162054</span>
+            </p>
+        </div>
+
+        <div class="systemTest">
+            <div class="systemColor" id="systemColor">
+
+            </div>
+            <button onclick="genColor()" id="genNew">Generate Color & Match With Recursion</button>
+            <p>
+                HAX CODE OF SYSTEM SEARCHED <span id="searched">#762054</span>
+            </p>
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>
